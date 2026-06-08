@@ -10,10 +10,14 @@ class PostController extends Controller
     //
     public function index(){
         $data = DB::table('posts')->get();
+
+        return response()->json([
+            "data"=> $data,
+        ]);
     }
 
-    public function store(){
-
+    public function store(Request $request){
+        
     }
 
     public function show(String $id){
