@@ -12,7 +12,7 @@ class postRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,8 @@ class postRequest extends FormRequest
     {
         return [
             //
+            "title"=> "required|string|min:5",
+            "image_url"=> "required|string|mimes:jpg,png,jpeg,gif,svg",
         ];
     }
 }
