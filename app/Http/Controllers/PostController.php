@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\postRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +17,11 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-        
+    public function store(postRequest $request){
+        $image_path = null;
+        if($request->hasFile("image")){
+
+        }
     }
 
     public function show(String $id){
