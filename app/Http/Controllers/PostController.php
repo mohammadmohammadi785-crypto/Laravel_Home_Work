@@ -20,8 +20,15 @@ class PostController extends Controller
     public function store(postRequest $request){
         $image_path = null;
         if($request->hasFile("image")){
-
+           $image_path = $request->file('image')->store('post_images', 'public');
         }
+        $data = DB::table('posts')->insert([
+            "title"=> $request->title,
+            "image_url"=> $image_path,
+        ]);
+        return response()->json([
+            "data"=> $data
+        ]);
     }
 
     public function show(String $id){
