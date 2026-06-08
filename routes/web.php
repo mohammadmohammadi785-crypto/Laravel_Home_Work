@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 Route::view("create-post", "createPost");
-Route::post("create/post", [PostController::class,"store"]);
+Route::post("create-p", [PostController::class,"store"]);
