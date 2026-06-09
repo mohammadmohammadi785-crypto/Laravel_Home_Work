@@ -9,6 +9,7 @@ namespace Database\Seeders;
 
 use App\Models\Car;
 use App\Models\Mechanic;
+use App\Models\Owner;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Car::factory(10)->create();
+        Owner::factory(10)->create();
     }
 }
