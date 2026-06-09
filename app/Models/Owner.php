@@ -14,6 +14,9 @@ class Owner extends Model
         'car_id'
     ];
     public function car(){
-        
+        return $this->belongsTo(Car::class);
+    }
+    public function customer(){
+        return $this->hasOneThrough(Owner::class, Car::class, "mechanic_id", "car_id", "id", "id");
     }
 }
