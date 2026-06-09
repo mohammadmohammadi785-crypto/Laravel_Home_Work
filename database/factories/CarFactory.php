@@ -19,6 +19,7 @@ class CarFactory extends Factory
     {
         return [
             "model"=>$this->faker->company(),
+            "mechanic_id"=>$this->faker->numberBetween(1,10),
         ];
     }
 }
