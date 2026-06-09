@@ -12,7 +12,7 @@ class MechanicController extends Controller
      */
     public function index()
     {
-        $data = Mechanic::all();
+        $data = Mechanic::with("customer")->get();
         return response()->json([
             "data"=> $data
         ]);
