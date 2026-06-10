@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('body');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

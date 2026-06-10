@@ -18,7 +18,8 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "name"=>$this->faker->firstName('male'),
+            "country_id"=>$this->faker->numberBetween(1,200)
         ];
     }
 }

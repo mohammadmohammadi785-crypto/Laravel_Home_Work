@@ -8,6 +8,7 @@ namespace Database\Seeders;
 // use App\Models\User;
 
 use App\Models\Car;
+use App\Models\Client;
 use App\Models\Mechanic;
 use App\Models\Owner;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,5 +24,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Owner::factory(10)->create();
+        // $this->call([
+        //     CountriesSeeder::class
+        // ]);
+        Client::factory(300)->create();
     }
 }
