@@ -11,6 +11,7 @@ use App\Models\Car;
 use App\Models\Client;
 use App\Models\Mechanic;
 use App\Models\Owner;
+use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +28,6 @@ class DatabaseSeeder extends Seeder
         // $this->call([
         //     CountriesSeeder::class
         // ]);
-        Client::factory(300)->create();
+        Post::factory(300)->create();
     }
 }

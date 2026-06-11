@@ -19,7 +19,7 @@ class PostFactory extends Factory
     {
         return [
             "title"=>$this->faker->sentence(5),
-            "body"=>$this->faker->sentence(),
+            "body"=>$this->faker->sentence(30),
             "client_id"=>$this->faker->numberBetween(1,300),
         ];
     }
