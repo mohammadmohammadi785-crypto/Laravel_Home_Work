@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    <div class="w-full h-full bg-black text-white flex justify-center items-center">
+    <div class="w-full h-screen bg-black text-white flex justify-center items-center">
         <nav class="p-3 bg-black text-white border-b fixed top-0 left-0 w-full z-10 flex justify-between">
             <ul class="flex w-full gap-4 justify-between items-center">
                 <h1 class="text-2xl ml-5">logo</h1>
@@ -20,7 +20,7 @@
                 </div>
             </ul>
         </nav>
-        <div class="w-full h-full mt-13">
+        <div class="w-full mt-13">
             @if (count($posts)>0)
                 <div class="w-full flex flex-col mx-auto">
                 @foreach ($posts as $post)
