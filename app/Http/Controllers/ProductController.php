@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -117,6 +118,14 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        if(count($product->images)>0){
+            foreach ($product->images as $image) {
+                Storage::disk("public")->delete($image->image_url);
+                Image::findOrFail($image->id)->delete();
+            }
+        }
+        $product->delete();
+        return redirect("/product");
     }
 }

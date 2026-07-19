@@ -22,6 +22,7 @@ Route::post('/product/add', [ProductController::class, 'create']);
 Route::get('product', [ProductController::class, 'index']);
 Route::put('product/update/{id}', [ProductController::class, 'update']);
 Route::get('product/edit/{id}', [ProductController::class, 'edit']);
+Route::delete("delete/{id}", [ProductController::class, "destroy"]);
 
 Route::post("create-post",[PostController::class, "create"]);
 Route::get("Post",[PostController::class, "index"]);
