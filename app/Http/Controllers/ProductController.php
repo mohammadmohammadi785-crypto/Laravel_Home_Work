@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -67,17 +68,48 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(String $id){
+        $product = Product::findOrFail($id);
+        $product->load("images");
+        return view('Product.update')->with('products', $product);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, String $id){
+        $request->validate([
+            "name"=> "required|string|min:8",
+            "price"=> "required|string",     
+            "stock"=> "required|string",
+            "image1"=> "nullable|image|mimes:jpg,png,jpeg,gif,svg",    
+            "image2"=> "nullable|image|mimes:jpg,png,jpeg,gif,svg",    
+        ]);
+        $product = Product::findOrFail($id);
+        $product->load('images');
+        $product->update([
+            "name"=> $request->name,
+            "price"=>$request->price,
+            "stock"=>$request->stock,
+        ]);
+        if($request->hasFile('image1') && $request->hasFile("image2")){
+            $imagePath1  = null;
+            $imagePath2 = null;
+            foreach($product->images as $image){
+                Storage::disk('public')->delete($image->image_url);
+            }
+            $imagePath1 = $request->file("image1")->store("product_images", "public");
+            $imagePath2 = $request->file("image2")->store("product_images", "public");
+
+            $images = $product->images;
+            $images[0]->update([
+                "image_url" => $imagePath1
+            ]);
+            $images[1]->update([
+                "image_url" => $imagePath2
+            ]);
+        }
+        return redirect('/product');
     }
 
     /**
