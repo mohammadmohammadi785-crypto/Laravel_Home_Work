@@ -28,6 +28,14 @@
                             <h1 class="text-3xl font-bold">{{ $product->name }}</h1>
                             <p class="font-semibold text-xl">Price: {{ $product->price }}</p>
                             <p class="font-semibold text-xl">Stock: {{ $product->stock }}</p>
+                            <div class=" flex items-center gap-2.5">
+                                <a class="text-md font-semibold border rounded-md h-fit w-fit p-3 mt-2" href="product/edit/{{ $product->id }}">Update</a>
+                                <form action="{{ URL('delete', $product->id) }}" method="post" onsubmit="return confirm('Doyou want to delete this product')">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="py-3 mt-2 px-5 bg-red-500 text-white rounded-md ">Delete</button>
+                                </form>
+                            </div>
                         </div>
                         <div class="w-full grid grid-cols-2 gap-3">
                             @foreach ($product->images as $image)
