@@ -44,17 +44,9 @@ class PostController extends Controller
     public function update(Request $request, String $id){
         $post = Post::findOrFail($id);
         $request->validate([
-            "title"=> "required|string",
-            "body"=> "required|string",     
-            // "image"=> "required|image|mimes:jpg,png,gif,jpeg,svg"
+            "title"=> "required|string|min:8",
+            "body"=> "required|string|min:10",     
         ]);
-        // $image_url = null;
-        // if($request->hasFile('image')){
-        //     if(Storage::disk('public')->exists($post->image)){
-        //         Storage::disk('public')->delete($post->image);
-        //         $image_url = $request->file('image')->store('post_images', "public");
-        //     }
-        // }
         $post->update([
             "title"=> $request->title,
             "body"=>$request->body,
